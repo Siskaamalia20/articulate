@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Media Pembelajaran: الحفل بذكرى مولد الرسول - Kelas 9</title>
+  <style>
+    :root{--bg:#f6f9ff;--card:#fff;--accent:#4b6cf7;--muted:#6b7280}
+    *{box-sizing:border-box;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Helvetica Neue", Arial}
+    body{background:linear-gradient(180deg,#eef2ff 0%,var(--bg) 100%);margin:0;padding:20px;color:#0f172a}
+    .container{max-width:980px;margin:18px auto}
+    .header{display:flex;align-items:center;gap:16px}
+    .logo{width:76px;height:76px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--accent),#8b5cf6);color:#fff;font-weight:700;font-size:20px}
+    h1{margin:0;font-size:20px}
+    p.lead{margin:6px 0 0;color:var(--muted)}
+
+    .card{background:var(--card);border-radius:14px;padding:18px;margin-top:18px;box-shadow:0 8px 30px rgba(16,24,40,0.06)}
+    .name-entry{display:flex;gap:8px;align-items:center}
+    input[type=text]{flex:1;padding:10px;border-radius:10px;border:1px solid #e6e9f2}
+    button.primary{background:var(--accent);color:#fff;padding:10px 14px;border-radius:10px;border:0;cursor:pointer}
+
+    .menu{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
+    .menu .item{background:linear-gradient(180deg,#fff, #fbfdff);padding:12px;border-radius:12px;text-align:center;cursor:pointer;border:1px solid #eef2ff}
+    .menu .item.active{outline:3px solid rgba(75,108,247,0.12);transform:translateY(-4px)}
+
+    .content{margin-top:18px}
+    .arabic{font-size:20px;direction:rtl;text-align:right;font-family:"Scheherazade New", "Amiri", "Noto Naskh Arabic", serif;padding:12px;border-radius:10px;background:#f8fafc}
+    .translate{margin-top:10px;color:#0b1220}
+
+    .dialogues{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
+    .dialogue{padding:10px;border-radius:8px;background:#fff;border:1px solid #f1f5f9}
+
+    .assessment .q{margin-bottom:12px;padding:12px;border-radius:10px;background:#fff;border:1px solid #eef2ff}
+    .assessment label{display:block;margin:6px 0;padding:8px;border-radius:8px;border:1px dashed transparent}
+    .assessment input[type=radio]{margin-right:8px}
+    .btn-row{display:flex;gap:8px;justify-content:flex-end;margin-top:10px}
+    .result{padding:12px;border-radius:10px;background:#eef2ff;color:#063;display:none}
+
+    footer{margin-top:18px;color:var(--muted);font-size:13px}
+
+    @media(max-width:800px){.menu{grid-template-columns:repeat(2,1fr)}.dialogues{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="logo">M9</div>
+      <div>
+        <h1>الحفل بذكرى مولد الرسول — Media Pembelajaran (Kelas 9 MTS)</h1>
+        <p class="lead">Interaktif: isi nama dulu lalu jelajahi menu (KI/KD, Pendahuluan, Paragraf + Percakapan, Asesmen).</p>
+      </div>
+    </div>
+
+    <div class="card" id="entryCard">
+      <div style="font-weight:600;margin-bottom:8px">Masukkan nama sebelum memasuki menu</div>
+      <div class="name-entry">
+        <input type="text" id="studentName" placeholder="Tuliskan nama lengkap kamu...">
+        <button class="primary" id="enterBtn">Masuk</button>
+      </div>
+      <div style="margin-top:8px;color:var(--muted);font-size:13px">Jika tidak mengisi nama, menu tidak dapat diakses.</div>
+    </div>
+
+    <div class="card" id="mainCard" style="display:none">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div style="font-weight:700">Halo, <span id="displayName"></span> — Pilih menu</div>
+        <div style="font-size:13px;color:var(--muted)">Kelas 9 • Tema: Kegiatan Keagamaan</div>
+      </div>
+
+      <div class="menu" id="menu">
+        <div class="item active" data-target="ki">1. Kompetensi Inti &amp; Dasar</div>
+        <div class="item" data-target="intro">2. Pendahuluan Materi</div>
+        <div class="item" data-target="paragraph">3. Paragraf &amp; Percakapan</div>
+        <div class="item" data-target="assesment">4. Asesmen</div>
+      </div>
+
+      <div class="content">
+        <section id="ki" class="section">
+          <h3>Kompetensi Inti (KI) &amp; Kompetensi Dasar (KD)</h3>
+          <ul>
+            <li><strong>KI-1:</strong> Menghayati dan mengamalkan ajaran agama Islam secara konsisten.</li>
+            <li><strong>KI-2:</strong> Menunjukkan sikap toleransi dan rasa hormat pada praktik keagamaan.</li>
+            <li><strong>KD:</strong> Menjelaskan makna dan nilai-nilai yang terkandung dalam perayaan Maulid Nabi serta menghubungkannya dengan perilaku sehari-hari.</li>
+            <li><strong>KD:</strong> Menyusun teks pendek tentang peringatan Maulid menggunakan kosakata dan struktur sederhana bahasa Arab.</li>
+          </ul>
+        </section>
+
+        <section id="intro" class="section" style="display:none">
+          <h3>Pendahuluan Materi: الحفل بذكرى مولد الرسول</h3>
+          <p>Materi ini membahas makna perayaan Maulid Nabi Muhammad ﷺ, praktik umum yang dilakukan, nilai-nilai pendidikan yang bisa diambil, dan bagaimana siswa dapat mengekspresikannya melalui teks dan percakapan berbahasa Arab sederhana. Bagian ini dirancang untuk membantu siswa memahami konteks budaya dan agama serta melatih kemampuan bahasa Arab lisan dan tulis.</p>
+        </section>
+
+        <section id="paragraph" class="section" style="display:none">
+          <h3>Paragraf Singkat (Bahasa Arab) dan Terjemahan (150 kata - Bahasa Indonesia)</h3>
+
+          <div class="arabic">
+            الحفل بذكرى مولد الرسول مناسبة لتذكر سيرة النبي محمد ﷺ وتعزيز القيم الإسلامية. في هذا الحفل يقرأ الناس المدائح ويستمعون إلى قصص عن أخلاقه وتعاليمه. كما تُنظم أنشطة اجتماعية وخيرية للتقريب بين الناس ومساعدة المحتاجين. تُعد الاحتفالات فرصة لتعليم الأجيال الصغرى أهمية التسامح والرحمة والصدق في الحياة اليومية.
+          </div>
+
+          <div class="translate" id="translation">
+            Perayaan Maulid Nabi adalah momen tahunan yang diperingati oleh berbagai komunitas Muslim untuk mengenang kelahiran Nabi Muhammad ﷺ. Acara ini biasanya melibatkan pembacaan shalawat, ceramah keagamaan, dan pembacaan sejarah singkat tentang kehidupan Nabi. Selain sebagai bentuk penghormatan, perayaan Maulid juga menjadi wadah untuk mempererat ukhuwah, berbagi makanan, dan melakukan kegiatan sosial kepada yang membutuhkan. Di sekolah, peringatan semacam ini dapat dimanfaatkan sebagai sarana pendidikan karakter, mengajarkan nilai-nilai teladan Nabi seperti kejujuran, kasih sayang, dan kerja sama. Situasi perayaan harus diselenggarakan dengan sederhana, penuh hikmah, dan menghindari hal-hal yang berlebihan yang dapat mengaburkan tujuan utama: meneladani akhlak mulia. Melalui doa bersama dan kegiatan refleksi, peserta diharapkan tidak hanya merayakan secara lahiriah tetapi juga menginternalisasi pesan-pesan moral yang relevan dengan kehidupan sehari-hari. Demikianlah, Maulid menjadi pengingat untuk terus meningkatkan iman, memperbaiki perilaku, dan berkontribusi positif bagi masyarakat sekitar. Semoga peringatan ini membawa keberkahan dan meningkatkan semangat kebajikan bagi semua. Di seluruh negeri.
+          </div>
+
+          <h4 style="margin-top:12px">10 Percakapan Pendek (Berdasarkan Materi)</h4>
+          <div class="dialogues">
+            <div class="dialogue">
+              <strong>أحمد:</strong> هل تحب حضور الحفل بمولد الرسول؟<br>
+              <em>(Ahmad: Apakah kamu suka menghadiri perayaan Maulid?)</em>
+            </div>
+            <div class="dialogue">
+              <strong>سارة:</strong> نعم، أحب الاستماع إلى القصص عن أخلاق النبي.<br>
+              <em>(Sarah: Ya, saya suka mendengarkan kisah tentang akhlak Nabi.)</em>
+            </div>
+
+            <div class="dialogue">
+              <strong>أحمد:</strong> ما الذي يحدث في الحفل عادةً؟<br>
+              <em>(Ahmad: Apa yang biasanya terjadi dalam perayaan?)</em>
+            </div>
+            <div class="dialogue">
+              <strong>سارة:</strong> هناك مدائح، محاضرات، وتوزيع طعام للفقراء.<br>
+              <em>(Sarah: Ada pembacaan shalawat, ceramah, dan pembagian makanan untuk yang membutuhkan.)</em>
+            </div>
+
+            <div class="dialogue">
+              <strong>أحمد:</strong> هل نتعلم شيئًا مهمًا من هذه الاحتفالات؟<br>
+              <em>(Ahmad: Apakah kita belajar sesuatu yang penting dari perayaan ini?)</em>
+            </div>
+            <div class="dialogue">
+              <strong>سارة:</strong> نعم، نتعلم التسامح والرحمة ومساعدة الآخرين.<br>
+              <em>(Sarah: Ya, kita belajar toleransi, kasih sayang, dan membantu sesama.)</em>
+            </div>
+
+            <div class="dialogue">
+              <strong>أحمد:</strong> هل سنقوم بنشاط في المدرسة؟<br>
+              <em>(Ahmad: Apakah kita akan melakukan kegiatan di sekolah?)</em>
+            </div>
+            <div class="dialogue">
+              <strong>سارة:</strong> نعم، سنجهز عرضًا قصيرًا عن سيرة النبي.<br>
+              <em>(Sarah: Ya, kita akan menyiapkan presentasi singkat tentang sirah Nabi.)</em>
+            </div>
+
+            <div class="dialogue">
+              <strong>أحمد:</strong> كيف نُظهر الاحترام في الحفل؟<br>
+              <em>(Ahmad: Bagaimana kita menunjukkan rasa hormat di perayaan?)</em>
+            </div>
+            <div class="dialogue">
+              <strong>سارة:</strong> بالاستماع بتركيز والمشاركة بالأفعال الطيبة.<br>
+              <em>(Sarah: Dengan mendengarkan dengan fokus dan berpartisipasi dengan perbuatan baik.)</em>
+            </div>
+          </div>
+        </section>
+
+        <section id="assesment" class="section" style="display:none">
+          <h3>Asesmen — 10 Soal Pilihan Ganda</h3>
+          <form id="quizForm" class="assessment">
+
+            <div class="q">
+              <div><strong>1. Apa tujuan utama perayaan Maulid?</strong></div>
+              <label><input type="radio" name="q1" value="A">A. Sekedar berkumpul tanpa makna</label>
+              <label><input type="radio" name="q1" value="B">B. Mengenang kelahiran Nabi dan meneladani akhlaknya</label>
+              <label><input type="radio" name="q1" value="C">C. Kompetisi antar kelompok</label>
+              <label><input type="radio" name="q1" value="D">D. Ajang promosi komersial</label>
+            </div>
+
+            <div class="q">
+              <div><strong>2. Kegiatan apa yang sering dilakukan pada Maulid?</strong></div>
+              <label><input type="radio" name="q2" value="A">A. Membaca shalawat dan ceramah</label>
+              <label><input type="radio" name="q2" value="B">B. Balapan</label>
+              <label><input type="radio" name="q2" value="C">C. Menonton film</label>
+              <label><input type="radio" name="q2" value="D">D. Tidak melakukan apa-apa</label>
+            </div>
+
+            <div class="q">
+              <div><strong>3. Nilai apa yang diajarkan melalui perayaan Maulid di sekolah?</strong></div>
+              <label><input type="radio" name="q3" value="A">A. Kejujuran dan kerja sama</label>
+              <label><input type="radio" name="q3" value="B">B. Menyontek</label>
+              <label><input type="radio" name="q3" value="C">C. Bermain tanpa aturan</label>
+              <label><input type="radio" name="q3" value="D">D. Mengabaikan orang lain</label>
+            </div>
+
+            <div class="q">
+              <div><strong>4. Dalam dialog, siapa yang menyiapkan presentasi singkat?</strong></div>
+              <label><input type="radio" name="q4" value="A">A. Ahmad</label>
+              <label><input type="radio" name="q4" value="B">B. Guru</label>
+              <label><input type="radio" name="q4" value="C">C. Siswa (mereka)</label>
+              <label><input type="radio" name="q4" value="D">D. Tamu undangan</label>
+            </div>
+
+            <div class="q">
+              <div><strong>5. Salah satu kegiatan sosial dalam Maulid adalah:</strong></div>
+              <label><input type="radio" name="q5" value="A">A. Pembagian makanan untuk yang membutuhkan</label>
+              <label><input type="radio" name="q5" value="B">B. Lomba tari</label>
+              <label><input type="radio" name="q5" value="C">C. Pesta kembang api</label>
+              <label><input type="radio" name="q5" value="D">D. Pameran dagang</label>
+            </div>
+
+            <div class="q">
+              <div><strong>6. Bagaimana seharusnya perayaan diselenggarakan menurut teks?</strong></div>
+              <label><input type="radio" name="q6" value="A">A. Dengan sederhana dan penuh hikmah</label>
+              <label><input type="radio" name="q6" value="B">B. Dengan berlebihan</label>
+              <label><input type="radio" name="q6" value="C">C. Tanpa aturan</label>
+              <label><input type="radio" name="q6" value="D">D. Hanya untuk hiburan</label>
+            </div>
+
+            <div class="q">
+              <div><strong>7. Apa manfaat doa bersama pada Maulid?</strong></div>
+              <label><input type="radio" name="q7" value="A">A. Menginternalisasi pesan moral</label>
+              <label><input type="radio" name="q7" value="B">B. Menghindari tanggung jawab</label>
+              <label><input type="radio" name="q7" value="C">C. Untuk berdebat</label>
+              <label><input type="radio" name="q7" value="D">D. Menyombongkan diri</label>
+            </div>
+
+            <div class="q">
+              <div><strong>8. Kata 'shalawat' dalam konteks ini berarti:</strong></div>
+              <label><input type="radio" name="q8" value="A">A. Doa dan pujian untuk Nabi</label>
+              <label><input type="radio" name="q8" value="B">B. Lagu pop</label>
+              <label><input type="radio" name="q8" value="C">C. Tarian</label>
+              <label><input type="radio" name="q8" value="D">D. Olahraga</label>
+            </div>
+
+            <div class="q">
+              <div><strong>9. Salah satu perilaku yang tidak cocok dalam perayaan menurut teks adalah:</strong></div>
+              <label><input type="radio" name="q9" value="A">A. Berlebihan sehingga mengaburkan tujuan</label>
+              <label><input type="radio" name="q9" value="B">B"&gt;B. Berbagi makanan</label>
+              <label><input type="radio" name="q9" value="C">C. Belajar bersama</label>
+              <label><input type="radio" name="q9" value="D">D. Berdoa bersama</label>
+            </div>
+
+            <div class="q">
+              <div><strong>10. Pesan akhir yang diharapkan dari perayaan adalah:</strong></div>
+              <label><input type="radio" name="q10" value="A">A. Meningkatkan iman dan berkontribusi positif</label>
+              <label><input type="radio" name="q10" value="B">B. Mencari keuntungan materi</label>
+              <label><input type="radio" name="q10" value="C">C. Mengabaikan ajaran agama</label>
+              <label><input type="radio" name="q10" value="D">D. Menyebarkan kebencian</label>
+            </div>
+
+            <div class="btn-row">
+              <button type="button" class="primary" id="submitQuiz">Kirim Jawaban</button>
+              <button type="button" id="resetQuiz">Reset</button>
+            </div>
+
+            <div class="result" id="resultBox"></div>
+          </form>
+        </section>
+
+      </div>
+    </div>
+
+    <footer>Module dibuat untuk tujuan pembelajaran kelas 9 MTS — Sederhana, responsif, dan interaktif.</footer>
+  </div>
+
+  <script>
+    const enterBtn = document.getElementById('enterBtn');
+    const studentName = document.getElementById('studentName');
+    const mainCard = document.getElementById('mainCard');
+    const entryCard = document.getElementById('entryCard');
+    const displayName = document.getElementById('displayName');
+
+    enterBtn.addEventListener('click', ()=>{
+      const name = studentName.value.trim();
+      if(!name){
+        alert('Silakan masukkan nama untuk melanjutkan.');
+        return;
+      }
+      displayName.textContent = name;
+      entryCard.style.display = 'none';
+      mainCard.style.display = 'block';
+    });
+
+    // Menu navigation
+    document.querySelectorAll('.menu .item').forEach(it=>{
+      it.addEventListener('click', ()=>{
+        document.querySelectorAll('.menu .item').forEach(x=>x.classList.remove('active'));
+        it.classList.add('active');
+        const target = it.getAttribute('data-target');
+        document.querySelectorAll('.section').forEach(sec=>sec.style.display='none');
+        document.getElementById(target).style.display = 'block';
+      });
+    });
+
+    // Quiz logic
+    const answers = {q1:'B',q2:'A',q3:'A',q4:'C',q5:'A',q6:'A',q7:'A',q8:'A',q9:'A',q10:'A'};
+    document.getElementById('submitQuiz').addEventListener('click', ()=>{
+      const form = document.getElementById('quizForm');
+      let score=0; let total=10; let unanswered=0;
+      for(let i=1;i<=10;i++){
+        const name='q'+i; const val = form.elements[name].value;
+        if(!val){unanswered++; continue}
+        if(val === answers[name]) score++;
+      }
+      if(unanswered>0){ if(!confirm('Beberapa soal belum dijawab. Tetap kirim?')) return }
+      const box = document.getElementById('resultBox');
+      box.style.display='block';
+      box.innerHTML = `<strong>Nama:</strong> ${displayName.textContent}<br><strong>Skor:</strong> ${score} / ${total} (${Math.round(score/total*100)}%)`;
+    });
+
+    document.getElementById('resetQuiz').addEventListener('click', ()=>{
+      document.getElementById('quizForm').reset();
+      document.getElementById('resultBox').style.display='none';
+    });
+  </script>
+
+</body></html>
